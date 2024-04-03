@@ -13,12 +13,12 @@ function getAll() {
 }
 
 function getById(id) {
-  return db('fruits').where('id', id).first();
+  return db('fruits').where('fruit_id', id).first();
 }
 
-async function create(fruit) {
-  const [id] = await db('fruits').insert(fruit);
-  return getById(id);
+async function create({fruit_name, avg_weight_oz}) {
+  const fruits = await db('fruits').insert({fruit_name, avg_weight_oz});
+  return fruits;
 }
 
 module.exports = {
