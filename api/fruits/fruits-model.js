@@ -16,8 +16,8 @@ function getById(id) {
   return db('fruits').where('fruit_id', id).first();
 }
 
-async function create({fruit_name, avg_weight_oz}) {
-  const fruits = await db('fruits').insert({fruit_name, avg_weight_oz});
+async function create({fruit_name, average_weight_oz}) {
+  const fruits = await db('fruits').insert({fruit_name, average_weight_oz});
   return fruits;
 }
 
