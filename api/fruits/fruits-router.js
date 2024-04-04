@@ -25,14 +25,25 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-  Fruit.create(req.body)
-    .then(newFruitEntry => {
-      res.status(201).json(newFruitEntry);
-    })
-    .catch(err => {
-      res.status(500).json({ message: `Failed to create fruit: ${err.message}` });
-    });
+router.post("/", async (req, res) => {
+  try {
+      const newFruitId = await Fruit.create(req.body);
+      res.status(201).json({ newFruitId });
+  } catch (err) {
+      res.status(500).json({
+          message: `Failed to create fruit: ${err.message}`,
+      });
+  }
 });
+
+// router.post('/', (req, res) => {
+//   Fruit.create(req.body)
+//     .then(newFruitEntry => {
+//       res.status(201).json(newFruitEntry);
+//     })
+//     .catch(err => {
+//       res.status(500).json({ message: `Failed to create fruit: ${err.message}` });
+//     });
+// });
 
 module.exports = router;

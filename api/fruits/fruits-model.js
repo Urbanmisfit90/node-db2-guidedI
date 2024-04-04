@@ -17,8 +17,8 @@ function getById(id) {
 }
 
 async function create({fruit_name, average_weight_oz}) {
-  const fruits = await db('fruits').insert({fruit_name, average_weight_oz});
-  return fruits;
+  const [fruit_id] = await db('fruits').insert({fruit_name, average_weight_oz});
+  return getById(fruit_id);
 }
 
 module.exports = {
